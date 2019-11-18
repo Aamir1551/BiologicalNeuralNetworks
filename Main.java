@@ -5,22 +5,31 @@ public class Main {
         System.out.println("Starting training...");
         
         
-        InputNeuron q = new InputNeuron(0.8);
-        Bionet a = new Bionet(1);
-        Bionet b = new Bionet(0);
-        q.create_synapse(a);
-        //a.create_synapse(b);
+        Bionet a = new Bionet();
+        Bionet b = new Bionet();
+        Bionet c = new Bionet();
+        Bionet d = new Bionet();
+        a.create_synapse(b);
+        b.create_synapse(c);
+        c.create_synapse(d);
         
 
-        for(int i=0; i<100; i++) {
+        for(int i=0; i<10000; i++) {
+            
             a.resetNet();
             b.resetNet();
+            c.resetNet();
+            d.resetNet();
+            a.inject(0.8);
             a.fire();
-            //b.hebbian_update(1.0);
-            //a.hebbian_update(b.y);
-            //System.out.println(  Double.toString(b.y) + " " + Double.toString(a.w.get(0)));
-            a.hebbian_update(1.0);
-            System.out.println( Double.toString(a.y) + Double.toString(a.w.get(0)));
+            d.hebbian_update(-1.0);
+            c.hebbian_update(d.y);
+            b.hebbian_update(c.y);
+            System.out.println(  Double.toString(b.y) + " " + Double.toString(b.w.get(0)) + " " + Double.toString(b.b.get(0)));
+            System.out.println(  Double.toString(c.y) + " " + Double.toString(c.w.get(0)) + " " + Double.toString(c.b.get(0)));
+            System.out.println(  Double.toString(d.y) + " " + Double.toString(d.w.get(0)) + " " + Double.toString(d.b.get(0)));
+            //a.hebbian_update(1.0);
+            //System.out.println( Double.toString(a.y) + Double.toString(a.w.get(0)));
         }
 
         System.out.println("Training finished");
