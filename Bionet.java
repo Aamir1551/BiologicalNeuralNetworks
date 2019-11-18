@@ -4,11 +4,11 @@ public class Bionet {
     
     public ArrayList<Double> w = new ArrayList<Double>();
     public ArrayList<Double> b = new ArrayList<Double>();
-    public double y = 0;
+    public double y = -0.7;
     public double l_r = 0.01; 
     public ArrayList<Bionet>  postSynapticConnections = new ArrayList<Bionet>();
     public ArrayList<Bionet>  preSynapticConnections = new ArrayList<Bionet>();
-    public double threshold = -10;
+    public double threshold = -0.55;
     public static int id = 0;
     public int pid = 0;
     public Bionet() {
